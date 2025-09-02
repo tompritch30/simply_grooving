@@ -1,0 +1,1 @@
+"""Configuration module for Just Dance Skeleton Tracking"""

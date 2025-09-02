@@ -1,0 +1,75 @@
+{}
+{
+  "poses": [
+    {
+      "name": "T-Pose",
+      "keypoints": [
+        {"x": 0.5, "y": 0.2, "confidence": 1.0, "name": "NOSE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "LEFT_EYE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "RIGHT_EYE"},
+        {"x": 0.3, "y": 0.4, "confidence": 1.0, "name": "LEFT_SHOULDER"},
+        {"x": 0.7, "y": 0.4, "confidence": 1.0, "name": "RIGHT_SHOULDER"},
+        {"x": 0.1, "y": 0.4, "confidence": 1.0, "name": "LEFT_ELBOW"},
+        {"x": 0.9, "y": 0.4, "confidence": 1.0, "name": "RIGHT_ELBOW"},
+        {"x": 0.05, "y": 0.4, "confidence": 1.0, "name": "LEFT_WRIST"},
+        {"x": 0.95, "y": 0.4, "confidence": 1.0, "name": "RIGHT_WRIST"},
+        {"x": 0.4, "y": 0.6, "confidence": 1.0, "name": "LEFT_HIP"},
+        {"x": 0.6, "y": 0.6, "confidence": 1.0, "name": "RIGHT_HIP"},
+        {"x": 0.4, "y": 0.8, "confidence": 1.0, "name": "LEFT_KNEE"},
+        {"x": 0.6, "y": 0.8, "confidence": 1.0, "name": "RIGHT_KNEE"},
+        {"x": 0.4, "y": 1.0, "confidence": 1.0, "name": "LEFT_ANKLE"},
+        {"x": 0.6, "y": 1.0, "confidence": 1.0, "name": "RIGHT_ANKLE"}
+      ],
+      "difficulty": "easy",
+      "tags": ["basic", "calibration"],
+      "description": "Arms extended horizontally, basic pose"
+    },
+    {
+      "name": "Victory_Pose",
+      "keypoints": [
+        {"x": 0.5, "y": 0.2, "confidence": 1.0, "name": "NOSE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "LEFT_EYE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "RIGHT_EYE"},
+        {"x": 0.3, "y": 0.4, "confidence": 1.0, "name": "LEFT_SHOULDER"},
+        {"x": 0.7, "y": 0.4, "confidence": 1.0, "name": "RIGHT_SHOULDER"},
+        {"x": 0.2, "y": 0.3, "confidence": 1.0, "name": "LEFT_ELBOW"},
+        {"x": 0.8, "y": 0.3, "confidence": 1.0, "name": "RIGHT_ELBOW"},
+        {"x": 0.15, "y": 0.15, "confidence": 1.0, "name": "LEFT_WRIST"},
+        {"x": 0.85, "y": 0.15, "confidence": 1.0, "name": "RIGHT_WRIST"},
+        {"x": 0.4, "y": 0.6, "confidence": 1.0, "name": "LEFT_HIP"},
+        {"x": 0.6, "y": 0.6, "confidence": 1.0, "name": "RIGHT_HIP"},
+        {"x": 0.4, "y": 0.8, "confidence": 1.0, "name": "LEFT_KNEE"},
+        {"x": 0.6, "y": 0.8, "confidence": 1.0, "name": "RIGHT_KNEE"},
+        {"x": 0.4, "y": 1.0, "confidence": 1.0, "name": "LEFT_ANKLE"},
+        {"x": 0.6, "y": 1.0, "confidence": 1.0, "name": "RIGHT_ANKLE"}
+      ],
+      "difficulty": "easy",
+      "tags": ["celebration", "arms_up"],
+      "description": "Both arms raised up in victory"
+    },
+    {
+      "name": "Disco_Point",
+      "keypoints": [
+        {"x": 0.5, "y": 0.2, "confidence": 1.0, "name": "NOSE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "LEFT_EYE"},
+        {"x": 0.5, "y": 0.25, "confidence": 1.0, "name": "RIGHT_EYE"},
+        {"x": 0.3, "y": 0.4, "confidence": 1.0, "name": "LEFT_SHOULDER"},
+        {"x": 0.7, "y": 0.4, "confidence": 1.0, "name": "RIGHT_SHOULDER"},
+        {"x": 0.25, "y": 0.35, "confidence": 1.0, "name": "LEFT_ELBOW"},
+        {"x": 0.9, "y": 0.25, "confidence": 1.0, "name": "RIGHT_ELBOW"},
+        {"x": 0.2, "y": 0.5, "confidence": 1.0, "name": "LEFT_WRIST"},
+        {"x": 1.0, "y": 0.1, "confidence": 1.0, "name": "RIGHT_WRIST"},
+        {"x": 0.4, "y": 0.6, "confidence": 1.0, "name": "LEFT_HIP"},
+        {"x": 0.6, "y": 0.6, "confidence": 1.0, "name": "RIGHT_HIP"},
+        {"x": 0.4, "y": 0.8, "confidence": 1.0, "name": "LEFT_KNEE"},
+        {"x": 0.6, "y": 0.8, "confidence": 1.0, "name": "RIGHT_KNEE"},
+        {"x": 0.4, "y": 1.0, "confidence": 1.0, "name": "LEFT_ANKLE"},
+        {"x": 0.6, "y": 1.0, "confidence": 1.0, "name": "RIGHT_ANKLE"}
+      ],
+      "difficulty": "medium",
+      "tags": ["disco", "pointing", "dance"],
+      "description": "Classic disco pointing pose"
+    }
+  ],
+  "version": "1.0"
+}
