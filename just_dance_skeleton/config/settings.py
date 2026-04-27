@@ -7,7 +7,7 @@ CAMERA_FPS = 30
 WEBCAM_ID = 0
 
 # Pose Detection Settings
-POSE_INFERENCE_WIDTH = 480  # Downscaled for performance
+POSE_INFERENCE_WIDTH = 480  # Downscaled for PC to live
 POSE_INFERENCE_HEIGHT = 360
 POSE_MIN_DETECTION_CONFIDENCE = 0.7
 POSE_MIN_TRACKING_CONFIDENCE = 0.5
@@ -16,7 +16,7 @@ POSE_MIN_TRACKING_CONFIDENCE = 0.5
 GREEN_RGB = (0, 255, 0)
 RED_RGB = (255, 0, 0)
 YELLOW_RGB = (255, 255, 0)
-SKELETON_COLOR = GREEN_RGB 
+SKELETON_COLOR = GREEN_RGB
 JOINT_COLOR = RED_RGB
 JOINT_RADIUS = 5
 SKELETON_THICKNESS = 2
@@ -25,17 +25,16 @@ GLOW_COLOR = YELLOW_RGB
 
 ### Pose Matching Settings
 # Similarity threshold (0-1)
-POSE_MATCH_THRESHOLD = 0.8    
-# Maximum distance for pose matching
-MAX_POSE_DISTANCE = 100       
-# For scale normalization
-NORMALIZATION_KEYPOINTS = ["LEFT_SHOULDER", "RIGHT_SHOULDER"] 
+POSE_MATCH_THRESHOLD = 0.6
+MAX_POSE_DISTANCE = 100  # for matching
+NORMALIZATION_KEYPOINTS = ["LEFT_SHOULDER", "RIGHT_SHOULDER"]
 
 # Game Settings
 TARGET_FPS = 30
 SCORE_DECAY_RATE = 0.95
 PERFECT_MATCH_BONUS = 10
 GOOD_MATCH_BONUS = 5
+MAX_POSES_TO_SHOW = 8
 
 # GUI Settings
 WINDOW_NAME = "Just Dance - Skeleton Tracking"
@@ -47,15 +46,42 @@ FONT_THICKNESS = 2
 # MediaPipe Pose Connections
 POSE_CONNECTIONS = [
     # Face
-    (0, 1), (1, 2), (2, 3), (3, 7), (0, 4), (4, 5), (5, 6), (6, 8),
+    (0, 1),
+    (1, 2),
+    (2, 3),
+    (3, 7),
+    (0, 4),
+    (4, 5),
+    (5, 6),
+    (6, 8),
     # Shoulders and arms
-    (9, 10), (11, 12), (11, 13), (13, 15), (15, 17), (15, 19), (15, 21),
-    (12, 14), (14, 16), (16, 18), (16, 20), (16, 22),
+    (9, 10),
+    (11, 12),
+    (11, 13),
+    (13, 15),
+    (15, 17),
+    (15, 19),
+    (15, 21),
+    (12, 14),
+    (14, 16),
+    (16, 18),
+    (16, 20),
+    (16, 22),
     # Torso
-    (11, 23), (12, 24), (23, 24),
+    (11, 23),
+    (12, 24),
+    (23, 24),
     # Legs
-    (23, 25), (25, 27), (27, 29), (29, 31), (27, 31),
-    (24, 26), (26, 28), (28, 30), (30, 32), (28, 32)
+    (23, 25),
+    (25, 27),
+    (27, 29),
+    (29, 31),
+    (27, 31),
+    (24, 26),
+    (26, 28),
+    (28, 30),
+    (30, 32),
+    (28, 32),
 ]
 
 # Keypoint names mapping (MediaPipe Pose landmark indices)
@@ -92,15 +118,21 @@ KEYPOINT_NAMES = {
     29: "LEFT_HEEL",
     30: "RIGHT_HEEL",
     31: "LEFT_FOOT_INDEX",
-    32: "RIGHT_FOOT_INDEX"
+    32: "RIGHT_FOOT_INDEX",
 }
 
 # Important keypoints for dance pose matching
 IMPORTANT_KEYPOINTS = [
-    11, 12,  # Shoulders
-    13, 14,  # Elbows
-    15, 16,  # Wrists
-    23, 24,  # Hips
-    25, 26,  # Knees
-    27, 28   # Ankles
+    11,
+    12,  # Shoulders
+    13,
+    14,  # Elbows
+    15,
+    16,  # Wrists
+    23,
+    24,  # Hips
+    25,
+    26,  # Knees
+    27,
+    28,  # Ankles
 ]

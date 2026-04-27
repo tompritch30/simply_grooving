@@ -1,7 +1,7 @@
 """Camera source implementations"""
 
 from .base import CameraSource
-from .webcam import WebcamSource
 from .kinect import KinectSource
+from .webcam import WebcamSource
 
-__all__ = ['CameraSource', 'WebcamSource', 'KinectSource']
+__all__ = ["CameraSource", "WebcamSource", "KinectSource"]
