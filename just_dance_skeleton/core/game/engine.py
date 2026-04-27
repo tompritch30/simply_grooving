@@ -2,17 +2,23 @@ import random
 import time
 from typing import List, Optional
 
-from config.settings import GOOD_MATCH_BONUS, PERFECT_MATCH_BONUS, SCORE_DECAY_RATE
+from config.settings import SCORE_DECAY_RATE
 
 from ..pose.matcher import DancePoseMatcher
 from ..pose.models import GameState, Pose, PoseMatch
+from .scoring import ScoringEngine
 
 
 class GameEngine:
     """Main game engine managing game state and logic"""
 
-    def __init__(self, pose_matcher: DancePoseMatcher):
+    def __init__(
+        self,
+        pose_matcher: DancePoseMatcher,
+        scoring_engine: Optional[ScoringEngine] = None,
+    ):
         self.pose_matcher = pose_matcher
+        self.scoring_engine = scoring_engine or ScoringEngine()
         self.game_state = GameState()
         self.target_pose_sequence: List[str] = []
         self.current_pose_index = 0
@@ -99,20 +105,22 @@ class GameEngine:
 
     def _complete_pose(self, pose_match: PoseMatch) -> None:
         """Complete current pose and move to next"""
-        # Award points
-        base_score = GOOD_MATCH_BONUS
-        if pose_match.is_perfect_match:
-            base_score = PERFECT_MATCH_BONUS
+        score_result = self.scoring_engine.calculate_pose_score(
+            similarity=pose_match.similarity,
+            is_good_match=pose_match.is_good_match,
+            is_perfect_match=pose_match.is_perfect_match,
+            combo_count=self.game_state.combo_count,
+        )
 
-        # Apply combo multiplier
-        combo_multiplier = 1.0 + (self.game_state.combo_count * 0.1)
-        score_earned = base_score * combo_multiplier * pose_match.similarity
-
-        self.game_state.score += score_earned
+        self.game_state.score += score_result.total_score
         self.game_state.combo_count += 1
+        self.game_state.last_score_earned = score_result.total_score
+        self.game_state.last_judgement = score_result.judgement
 
         print(
-            f"Pose completed! +{score_earned:.1f} points (combo x{combo_multiplier:.1f})"
+            "Pose completed! "
+            f"+{score_result.total_score:.1f} points "
+            f"(combo x{score_result.combo_multiplier:.1f})"
         )
 
         # Move to next pose

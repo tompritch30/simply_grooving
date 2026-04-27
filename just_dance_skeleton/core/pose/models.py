@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 
 import numpy as np
 
@@ -44,6 +44,18 @@ class Pose:
                 return kp
         return None
 
+    def _resolve_reference_keypoint(
+        self, reference_keypoint: Union[int, str]
+    ) -> Optional[Keypoint]:
+        """Resolve keypoints from either numeric indices or semantic names."""
+        if isinstance(reference_keypoint, int):
+            return self.get_keypoint(reference_keypoint)
+
+        if isinstance(reference_keypoint, str):
+            return self.get_keypoint_by_name(reference_keypoint)
+
+        return None
+
     def get_bounding_box(self) -> Tuple[int, int, int, int]:
         """Get bounding box (x, y, width, height) of all visible keypoints"""
         visible_kps = [kp for kp in self.keypoints if kp.confidence > 0.5]
@@ -58,7 +70,7 @@ class Pose:
 
         return (int(min_x), int(min_y), int(max_x - min_x), int(max_y - min_y))
 
-    def normalize_scale(self, reference_keypoints: list[int]) -> "Pose":
+    def normalize_scale(self, reference_keypoints: list[Union[int, str]]) -> "Pose":
         """
         Normalize pose scale based on reference keypoints (e.g., shoulder width)
         Returns a new normalized pose
@@ -67,8 +79,8 @@ class Pose:
             return self
 
         # Calculate reference distance (e.g., shoulder width)
-        kp1 = self.get_keypoint(reference_keypoints[0])
-        kp2 = self.get_keypoint(reference_keypoints[1])
+        kp1 = self._resolve_reference_keypoint(reference_keypoints[0])
+        kp2 = self._resolve_reference_keypoint(reference_keypoints[1])
 
         if not kp1 or not kp2 or kp1.confidence < 0.5 or kp2.confidence < 0.5:
             return self
@@ -79,8 +91,12 @@ class Pose:
 
         # Normalize all keypoints - 100 units
         scale_factor = 100.0 / ref_distance
-        center_x = np.mean([kp.x for kp in self.keypoints if kp.confidence > 0.5])
-        center_y = np.mean([kp.y for kp in self.keypoints if kp.confidence > 0.5])
+        visible_keypoints = [kp for kp in self.keypoints if kp.confidence > 0.5]
+        if not visible_keypoints:
+            return self
+
+        center_x = np.mean([kp.x for kp in visible_keypoints])
+        center_y = np.mean([kp.y for kp in visible_keypoints])
 
         normalized_keypoints = []
         for kp in self.keypoints:
@@ -184,3 +200,5 @@ class GameState:
     is_playing: bool = False
     frame_count: int = 0
     start_time: Optional[float] = None
+    last_score_earned: float = 0.0
+    last_judgement: Optional[str] = None

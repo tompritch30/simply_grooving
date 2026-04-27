@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 from config.settings import (
-    IMPORTANT_KEYPOINTS,
+    IMPORTANT_KEYPOINT_NAMES,
     MAX_POSE_DISTANCE,
     NORMALIZATION_KEYPOINTS,
     POSE_MATCH_THRESHOLD,
@@ -96,7 +96,7 @@ class DancePoseMatcher:
                     similarity=similarity,
                     distance=distance,
                     matched_keypoints=matched_kps,
-                    total_keypoints=len(IMPORTANT_KEYPOINTS),
+                    total_keypoints=len(IMPORTANT_KEYPOINT_NAMES),
                     is_good_match=similarity >= POSE_MATCH_THRESHOLD * 0.7,
                     is_perfect_match=similarity >= POSE_MATCH_THRESHOLD,
                 )
@@ -117,10 +117,10 @@ class DancePoseMatcher:
         valid_comparisons = 0
         matched_keypoints = 0
 
-        # Focus on important keypoints for dance poses
-        for kp_idx in IMPORTANT_KEYPOINTS:
-            kp1 = pose1.get_keypoint(kp_idx)
-            kp2 = pose2.get_keypoint(kp_idx)
+        # Compare semantic joints by name to support both 15-keypoint and 33-keypoint inputs.
+        for keypoint_name in IMPORTANT_KEYPOINT_NAMES:
+            kp1 = pose1.get_keypoint_by_name(keypoint_name)
+            kp2 = pose2.get_keypoint_by_name(keypoint_name)
 
             if kp1 and kp2 and kp1.confidence > 0.5 and kp2.confidence > 0.5:
                 distance = kp1.distance_to(kp2)

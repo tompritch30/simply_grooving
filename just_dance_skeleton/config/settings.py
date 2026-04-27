@@ -34,6 +34,7 @@ TARGET_FPS = 30
 SCORE_DECAY_RATE = 0.95
 PERFECT_MATCH_BONUS = 10
 GOOD_MATCH_BONUS = 5
+COMBO_MULTIPLIER_STEP = 0.1
 MAX_POSES_TO_SHOW = 8
 
 # GUI Settings
@@ -135,4 +136,20 @@ IMPORTANT_KEYPOINTS = [
     26,  # Knees
     27,
     28,  # Ankles
+]
+
+# Semantic keypoint set for cross-format matching (15-point and 33-point poses)
+IMPORTANT_KEYPOINT_NAMES = [
+    "LEFT_SHOULDER",
+    "RIGHT_SHOULDER",
+    "LEFT_ELBOW",
+    "RIGHT_ELBOW",
+    "LEFT_WRIST",
+    "RIGHT_WRIST",
+    "LEFT_HIP",
+    "RIGHT_HIP",
+    "LEFT_KNEE",
+    "RIGHT_KNEE",
+    "LEFT_ANKLE",
+    "RIGHT_ANKLE",
 ]
